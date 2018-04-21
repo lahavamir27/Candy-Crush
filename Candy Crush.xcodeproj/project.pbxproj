@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4D4001E51D7ABD7700180AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4001E41D7ABD7700180AD1 /* AppDelegate.swift */; };
-		4D4001E71D7ABD7700180AD1 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4D4001E61D7ABD7700180AD1 /* GameScene.sks */; };
 		4D4001E91D7ABD7700180AD1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4001E81D7ABD7700180AD1 /* GameScene.swift */; };
 		4D4001EB1D7ABD7700180AD1 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4001EA1D7ABD7700180AD1 /* GameViewController.swift */; };
 		4D4001EE1D7ABD7700180AD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D4001EC1D7ABD7700180AD1 /* Main.storyboard */; };
@@ -16,6 +15,27 @@
 		4D4001F31D7ABD7700180AD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D4001F11D7ABD7700180AD1 /* LaunchScreen.storyboard */; };
 		4D4001FE1D7ABD7700180AD1 /* Candy_CrushTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4001FD1D7ABD7700180AD1 /* Candy_CrushTests.swift */; };
 		4D4002091D7ABD7800180AD1 /* Candy_CrushUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4002081D7ABD7800180AD1 /* Candy_CrushUITests.swift */; };
+		4D4002171D7ABE5100180AD1 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 4D4002161D7ABE5000180AD1 /* Sprites.atlas */; };
+		4D4002191D7ABFB300180AD1 /* Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4002181D7ABFB300180AD1 /* Cookie.swift */; };
+		4D40021B1D7AC26600180AD1 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40021A1D7AC26600180AD1 /* Array2D.swift */; };
+		4D40021D1D7AC3A500180AD1 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40021C1D7AC3A500180AD1 /* Level.swift */; };
+		4D4002231D7ACE9B00180AD1 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4002221D7ACE9B00180AD1 /* Tile.swift */; };
+		4D4002271D7ACF5500180AD1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4002261D7ACF5500180AD1 /* Extensions.swift */; };
+		4D40022E1D7AD5BE00180AD1 /* Level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D4002291D7AD5BE00180AD1 /* Level_1.json */; };
+		4D40022F1D7AD5BE00180AD1 /* Level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D40022A1D7AD5BE00180AD1 /* Level_2.json */; };
+		4D4002301D7AD5BE00180AD1 /* Level_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D40022B1D7AD5BE00180AD1 /* Level_3.json */; };
+		4D4002311D7AD5BE00180AD1 /* Level_0.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D40022C1D7AD5BE00180AD1 /* Level_0.json */; };
+		4D4002341D7ADB5100180AD1 /* Swap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4002331D7ADB5100180AD1 /* Swap.swift */; };
+		4D40024A1D7AF0D300180AD1 /* Chomp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D4002441D7AF0D300180AD1 /* Chomp.wav */; };
+		4D40024B1D7AF0D300180AD1 /* Drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D4002451D7AF0D300180AD1 /* Drip.wav */; };
+		4D40024C1D7AF0D300180AD1 /* Error.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D4002461D7AF0D300180AD1 /* Error.wav */; };
+		4D40024D1D7AF0D300180AD1 /* Ka-Ching.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D4002471D7AF0D300180AD1 /* Ka-Ching.wav */; };
+		4D40024E1D7AF0D300180AD1 /* Scrape.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D4002481D7AF0D300180AD1 /* Scrape.wav */; };
+		4D40024F1D7AF0D300180AD1 /* Mining by Moonlight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D4002491D7AF0D300180AD1 /* Mining by Moonlight.mp3 */; };
+		4D4002511D7AFB7F00180AD1 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4002501D7AFB7F00180AD1 /* Chain.swift */; };
+		4D9C4A481D82C49700CCCBF3 /* Grid.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 4D9C4A471D82C49700CCCBF3 /* Grid.atlas */; };
+		4D9C4A4A1D82C66100CCCBF3 /* Level_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D9C4A491D82C66100CCCBF3 /* Level_4.json */; };
+		4D9C4A4C1D85D16A00CCCBF3 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9C4A4B1D85D16A00CCCBF3 /* Clock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,19 +58,39 @@
 /* Begin PBXFileReference section */
 		4D4001E11D7ABD7700180AD1 /* Candy Crush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Candy Crush.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D4001E41D7ABD7700180AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4D4001E61D7ABD7700180AD1 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		4D4001E81D7ABD7700180AD1 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		4D4001EA1D7ABD7700180AD1 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4D4001ED1D7ABD7700180AD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4D4001EF1D7ABD7700180AD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D4001F21D7ABD7700180AD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		4D4001F41D7ABD7700180AD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D4001F41D7ABD7700180AD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Candy Crush/Info.plist"; sourceTree = "<group>"; };
 		4D4001F91D7ABD7700180AD1 /* Candy CrushTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Candy CrushTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D4001FD1D7ABD7700180AD1 /* Candy_CrushTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candy_CrushTests.swift; sourceTree = "<group>"; };
 		4D4001FF1D7ABD7700180AD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D4002041D7ABD7800180AD1 /* Candy CrushUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Candy CrushUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D4002081D7ABD7800180AD1 /* Candy_CrushUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candy_CrushUITests.swift; sourceTree = "<group>"; };
 		4D40020A1D7ABD7800180AD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D4002161D7ABE5000180AD1 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
+		4D4002181D7ABFB300180AD1 /* Cookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cookie.swift; sourceTree = "<group>"; };
+		4D40021A1D7AC26600180AD1 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
+		4D40021C1D7AC3A500180AD1 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		4D4002221D7ACE9B00180AD1 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tile.swift; path = ../Tile.swift; sourceTree = "<group>"; };
+		4D4002261D7ACF5500180AD1 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = ../Extensions.swift; sourceTree = "<group>"; };
+		4D4002291D7AD5BE00180AD1 /* Level_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_1.json; sourceTree = "<group>"; };
+		4D40022A1D7AD5BE00180AD1 /* Level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_2.json; sourceTree = "<group>"; };
+		4D40022B1D7AD5BE00180AD1 /* Level_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_3.json; sourceTree = "<group>"; };
+		4D40022C1D7AD5BE00180AD1 /* Level_0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_0.json; sourceTree = "<group>"; };
+		4D4002331D7ADB5100180AD1 /* Swap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swap.swift; sourceTree = "<group>"; };
+		4D4002441D7AF0D300180AD1 /* Chomp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Chomp.wav; sourceTree = "<group>"; };
+		4D4002451D7AF0D300180AD1 /* Drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Drip.wav; sourceTree = "<group>"; };
+		4D4002461D7AF0D300180AD1 /* Error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Error.wav; sourceTree = "<group>"; };
+		4D4002471D7AF0D300180AD1 /* Ka-Ching.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Ka-Ching.wav"; sourceTree = "<group>"; };
+		4D4002481D7AF0D300180AD1 /* Scrape.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Scrape.wav; sourceTree = "<group>"; };
+		4D4002491D7AF0D300180AD1 /* Mining by Moonlight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mining by Moonlight.mp3"; sourceTree = "<group>"; };
+		4D4002501D7AFB7F00180AD1 /* Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
+		4D9C4A471D82C49700CCCBF3 /* Grid.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Grid.atlas; sourceTree = "<group>"; };
+		4D9C4A491D82C66100CCCBF3 /* Level_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_4.json; sourceTree = "<group>"; };
+		4D9C4A4B1D85D16A00CCCBF3 /* Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +121,7 @@
 		4D4001D81D7ABD7700180AD1 = {
 			isa = PBXGroup;
 			children = (
+				4D4001F41D7ABD7700180AD1 /* Info.plist */,
 				4D4001E31D7ABD7700180AD1 /* Candy Crush */,
 				4D4001FC1D7ABD7700180AD1 /* Candy CrushTests */,
 				4D4002071D7ABD7800180AD1 /* Candy CrushUITests */,
@@ -101,14 +142,11 @@
 		4D4001E31D7ABD7700180AD1 /* Candy Crush */ = {
 			isa = PBXGroup;
 			children = (
-				4D4001E41D7ABD7700180AD1 /* AppDelegate.swift */,
-				4D4001E61D7ABD7700180AD1 /* GameScene.sks */,
-				4D4001E81D7ABD7700180AD1 /* GameScene.swift */,
-				4D4001EA1D7ABD7700180AD1 /* GameViewController.swift */,
-				4D4001EC1D7ABD7700180AD1 /* Main.storyboard */,
-				4D4001EF1D7ABD7700180AD1 /* Assets.xcassets */,
-				4D4001F11D7ABD7700180AD1 /* LaunchScreen.storyboard */,
-				4D4001F41D7ABD7700180AD1 /* Info.plist */,
+				4D4002561D827E8200180AD1 /* resources */,
+				4D4002551D827BE600180AD1 /* other */,
+				4D4002541D827B6300180AD1 /* controller */,
+				4D4002531D827B5A00180AD1 /* model */,
+				4D4002521D827B5100180AD1 /* view */,
 			);
 			path = "Candy Crush";
 			sourceTree = "<group>";
@@ -129,6 +167,85 @@
 				4D40020A1D7ABD7800180AD1 /* Info.plist */,
 			);
 			path = "Candy CrushUITests";
+			sourceTree = "<group>";
+		};
+		4D4002281D7AD58E00180AD1 /* level */ = {
+			isa = PBXGroup;
+			children = (
+				4D4002291D7AD5BE00180AD1 /* Level_1.json */,
+				4D40022A1D7AD5BE00180AD1 /* Level_2.json */,
+				4D40022B1D7AD5BE00180AD1 /* Level_3.json */,
+				4D40022C1D7AD5BE00180AD1 /* Level_0.json */,
+				4D9C4A491D82C66100CCCBF3 /* Level_4.json */,
+			);
+			name = level;
+			sourceTree = "<group>";
+		};
+		4D4002371D7AF08E00180AD1 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				4D4002441D7AF0D300180AD1 /* Chomp.wav */,
+				4D4002451D7AF0D300180AD1 /* Drip.wav */,
+				4D4002461D7AF0D300180AD1 /* Error.wav */,
+				4D4002471D7AF0D300180AD1 /* Ka-Ching.wav */,
+				4D4002481D7AF0D300180AD1 /* Scrape.wav */,
+				4D4002491D7AF0D300180AD1 /* Mining by Moonlight.mp3 */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
+		4D4002521D827B5100180AD1 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				4D4001E81D7ABD7700180AD1 /* GameScene.swift */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		4D4002531D827B5A00180AD1 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4D4002221D7ACE9B00180AD1 /* Tile.swift */,
+				4D4002261D7ACF5500180AD1 /* Extensions.swift */,
+				4D4002331D7ADB5100180AD1 /* Swap.swift */,
+				4D9C4A4B1D85D16A00CCCBF3 /* Clock.swift */,
+				4D4002181D7ABFB300180AD1 /* Cookie.swift */,
+				4D40021C1D7AC3A500180AD1 /* Level.swift */,
+				4D4002501D7AFB7F00180AD1 /* Chain.swift */,
+				4D40021A1D7AC26600180AD1 /* Array2D.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		4D4002541D827B6300180AD1 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				4D4001EA1D7ABD7700180AD1 /* GameViewController.swift */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		4D4002551D827BE600180AD1 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				4D4001E41D7ABD7700180AD1 /* AppDelegate.swift */,
+				4D4001EF1D7ABD7700180AD1 /* Assets.xcassets */,
+				4D4001EC1D7ABD7700180AD1 /* Main.storyboard */,
+				4D4001F11D7ABD7700180AD1 /* LaunchScreen.storyboard */,
+			);
+			name = other;
+			sourceTree = "<group>";
+		};
+		4D4002561D827E8200180AD1 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				4D9C4A471D82C49700CCCBF3 /* Grid.atlas */,
+				4D4002371D7AF08E00180AD1 /* Sounds */,
+				4D4002281D7AD58E00180AD1 /* level */,
+				4D4002161D7ABE5000180AD1 /* Sprites.atlas */,
+			);
+			name = resources;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,11 +311,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "LA Computers";
 				TargetAttributes = {
 					4D4001E01D7ABD7700180AD1 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = TSD335DJ8W;
 					};
 					4D4001F81D7ABD7700180AD1 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -235,10 +353,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D4001E71D7ABD7700180AD1 /* GameScene.sks in Resources */,
 				4D4001F31D7ABD7700180AD1 /* LaunchScreen.storyboard in Resources */,
+				4D40024B1D7AF0D300180AD1 /* Drip.wav in Resources */,
+				4D9C4A481D82C49700CCCBF3 /* Grid.atlas in Resources */,
+				4D40024C1D7AF0D300180AD1 /* Error.wav in Resources */,
+				4D40022F1D7AD5BE00180AD1 /* Level_2.json in Resources */,
+				4D4002301D7AD5BE00180AD1 /* Level_3.json in Resources */,
+				4D40024E1D7AF0D300180AD1 /* Scrape.wav in Resources */,
+				4D40024A1D7AF0D300180AD1 /* Chomp.wav in Resources */,
+				4D4002311D7AD5BE00180AD1 /* Level_0.json in Resources */,
+				4D40024D1D7AF0D300180AD1 /* Ka-Ching.wav in Resources */,
+				4D40022E1D7AD5BE00180AD1 /* Level_1.json in Resources */,
 				4D4001F01D7ABD7700180AD1 /* Assets.xcassets in Resources */,
+				4D9C4A4A1D82C66100CCCBF3 /* Level_4.json in Resources */,
 				4D4001EE1D7ABD7700180AD1 /* Main.storyboard in Resources */,
+				4D40024F1D7AF0D300180AD1 /* Mining by Moonlight.mp3 in Resources */,
+				4D4002171D7ABE5100180AD1 /* Sprites.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,9 +393,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D40021D1D7AC3A500180AD1 /* Level.swift in Sources */,
 				4D4001E91D7ABD7700180AD1 /* GameScene.swift in Sources */,
+				4D4002191D7ABFB300180AD1 /* Cookie.swift in Sources */,
+				4D4002271D7ACF5500180AD1 /* Extensions.swift in Sources */,
+				4D4002231D7ACE9B00180AD1 /* Tile.swift in Sources */,
+				4D4002511D7AFB7F00180AD1 /* Chain.swift in Sources */,
 				4D4001EB1D7ABD7700180AD1 /* GameViewController.swift in Sources */,
 				4D4001E51D7ABD7700180AD1 /* AppDelegate.swift in Sources */,
+				4D40021B1D7AC26600180AD1 /* Array2D.swift in Sources */,
+				4D4002341D7ADB5100180AD1 /* Swap.swift in Sources */,
+				4D9C4A4C1D85D16A00CCCBF3 /* Clock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,13 +467,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -362,6 +508,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -374,13 +521,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -399,6 +554,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -407,10 +564,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TSD335DJ8W;
 				INFOPLIST_FILE = "Candy Crush/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "La-Computers.Candy-Crush";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -418,10 +577,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TSD335DJ8W;
 				INFOPLIST_FILE = "Candy Crush/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "La-Computers.Candy-Crush";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -492,6 +653,7 @@
 				4D40020F1D7ABD7800180AD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4D4002101D7ABD7800180AD1 /* Build configuration list for PBXNativeTarget "Candy CrushTests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +662,7 @@
 				4D4002121D7ABD7800180AD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4D4002131D7ABD7800180AD1 /* Build configuration list for PBXNativeTarget "Candy CrushUITests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +671,7 @@
 				4D4002151D7ABD7800180AD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,37 +9,465 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!"
-        myLabel.fontSize = 45
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
-        
-        self.addChild(myLabel)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder) is not used in this app")
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-       /* Called when a touch begins */
+    var swipeHandler: ((Swap) -> ())?
+    var level: Level!
+    
+    let TileWidth: CGFloat = 32.0
+    let TileHeight: CGFloat = 36.0
+    
+    let gameLayer = SKNode()
+    let cookiesLayer = SKNode()
+    let tilesLayer = SKNode()
+    
+    var selectionSprite = SKSpriteNode()
+    let cropLayer = SKCropNode()
+    let maskLayer = SKNode()
+    
+    let swapSound = SKAction.playSoundFileNamed("Chomp.wav", waitForCompletion: false)
+    let invalidSwapSound = SKAction.playSoundFileNamed("Error.wav", waitForCompletion: false)
+    let matchSound = SKAction.playSoundFileNamed("Ka-Ching.wav", waitForCompletion: false)
+    let fallingCookieSound = SKAction.playSoundFileNamed("Scrape.wav", waitForCompletion: false)
+    let addCookieSound = SKAction.playSoundFileNamed("Drip.wav", waitForCompletion: false)
+    
+    
+    private var swipeFromColumn: Int?
+    private var swipeFromRow: Int?
+    
+    override init(size: CGSize) {
         
-        for touch in touches {
-            let location = touch.locationInNode(self)
-            
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
+        super.init(size: size)
+        let _ = SKLabelNode(fontNamed: "GillSans-BoldItalic")
+        swipeFromColumn = nil
+        swipeFromRow = nil
+        
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        let background = SKSpriteNode(imageNamed: "Background")
+        background.size = size
+        
+        
+        addChild(background)
+        
+        addChild(gameLayer)
+        gameLayer.isHidden = true
+
+        let layerPosition = CGPoint(
+            x: -TileWidth * CGFloat(NumColumns) / 2,
+            y: -TileHeight * CGFloat(NumRows) / 2)
+        
+        
+        
+        
+        tilesLayer.position = layerPosition
+        gameLayer.addChild(tilesLayer)
+        
+        gameLayer.addChild(cropLayer)
+        
+        maskLayer.position = layerPosition
+        cropLayer.maskNode = maskLayer
+        
+        
+        cookiesLayer.position = layerPosition
+        cropLayer.addChild(cookiesLayer)
+        
+        
+    }
+
+    
+    // MARK: Gestures
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+        // 1
+        
+        guard let touch = touches.first else { return }
+        let location = touch.location(in: cookiesLayer)
+        // 2
+        let (success, column, row) = convertPoint(point: location)
+        if success {
+            // 3
+            if let cookie = level.cookieAtColumn(column: column, row: row) {
+                // 4
+                showSelectionIndicatorForCookie(cookie: cookie, completion: completion)
+                swipeFromColumn = column
+                swipeFromRow = row
+            }
         }
     }
-   
-    override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
+    
+    func completion(){
+        print("finish highlight")
+        
     }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // 1
+        guard swipeFromColumn != nil else { return }
+        
+        // 2
+        guard let touch = touches.first else { return }
+        let location = touch.location(in: cookiesLayer)
+        
+        let (success, column, row) = convertPoint(point:location)
+        if success {
+            
+            // 3
+            var horzDelta = 0, vertDelta = 0
+            if column < swipeFromColumn! {          // swipe left
+                horzDelta = -1
+            } else if column > swipeFromColumn! {   // swipe right
+                horzDelta = 1
+            } else if row < swipeFromRow! {         // swipe down
+                vertDelta = -1
+            } else if row > swipeFromRow! {         // swipe up
+                vertDelta = 1
+            }
+            
+            // 4
+            if horzDelta != 0 || vertDelta != 0 {
+                trySwapHorizontal(horzDelta: horzDelta, vertical: vertDelta)
+                hideSelectionIndicator()
+                
+                // 5
+                swipeFromColumn = nil
+            }
+        }
+    }
+
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if selectionSprite.parent != nil && swipeFromColumn != nil {
+            hideSelectionIndicator()
+            
+        }
+        swipeFromColumn = nil
+        swipeFromRow = nil
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
+        if let touches = touches {
+            touchesEnded(touches, with: event)
+        }
+    }
+    
+    // MARK: Animation
+
+    
+    func showSelectionIndicatorForCookie(cookie: Cookie, completion: @escaping () -> ()) {
+        
+        if selectionSprite.parent != nil {
+            print("show \(selectionSprite)")
+            selectionSprite.removeFromParent()
+        }
+        
+        if let sprite = cookie.sprite {
+            print("glow")
+            let texture = SKTexture(imageNamed: cookie.cookieType.highlightedSpriteName)
+            selectionSprite.size = CGSize(width: TileWidth, height: TileHeight)
+            selectionSprite.run(SKAction.setTexture(texture), completion: completion)
+            sprite.addChild(selectionSprite)
+            selectionSprite.alpha = 1.0
+        }else{
+            print("not glow")
+        }
+    }
+    
+
+    
+    func hideSelectionIndicator() {
+        selectionSprite.run(SKAction.sequence([
+            SKAction.fadeOut(withDuration: 0.3),
+            SKAction.removeFromParent()]))
+    }
+
+    
+    func animateSwap(swap: Swap, completion: @escaping () -> () ) {
+        let spriteA = swap.cookieA.sprite!
+        let spriteB = swap.cookieB.sprite!
+        
+        run(swapSound)
+
+        
+        spriteA.zPosition = 100
+        spriteB.zPosition = 90
+        
+        let Duration: TimeInterval = 0.3
+        
+        let moveA = SKAction.move(to: spriteB.position, duration: Duration)
+        moveA.timingMode = .easeOut
+        spriteA.run(moveA, completion: completion)
+        
+        let moveB = SKAction.move(to: spriteA.position, duration: Duration)
+        moveB.timingMode = .easeOut
+        spriteB.run(moveB)
+    }
+    
+    func animateInvalidSwap(swap: Swap, completion: @escaping () -> ()) {
+        let spriteA = swap.cookieA.sprite!
+        let spriteB = swap.cookieB.sprite!
+        
+        run(invalidSwapSound)
+
+        
+        spriteA.zPosition = 100
+        spriteB.zPosition = 90
+        
+        let Duration: TimeInterval = 0.2
+        
+        let moveA = SKAction.move(to: spriteB.position, duration: Duration)
+        moveA.timingMode = .easeOut
+        
+        let moveB = SKAction.move(to: spriteA.position, duration: Duration)
+        moveB.timingMode = .easeOut
+        
+        spriteA.run(SKAction.sequence([moveA, moveB]), completion: completion)
+        spriteB.run(SKAction.sequence([moveB, moveA]))
+    }
+    
+    func animateMatchedCookies(chains: Set<Chain>, completion: @escaping () -> ()) {
+        for chain in chains {
+            
+            animateScoreForChain(chain: chain)
+
+            for cookie in chain.cookies {
+                if let sprite = cookie.sprite {
+                    if sprite.action(forKey: "removing") == nil {
+                        let scaleAction = SKAction.scale(to: 0.1, duration: 0.3)
+                        scaleAction.timingMode = .easeOut
+                        sprite.run(SKAction.sequence([scaleAction, SKAction.removeFromParent()]),
+                                         withKey:"removing")
+                    }
+                }
+            }
+        }
+        run(matchSound)
+        run(SKAction.wait(forDuration: 0.3), completion: completion)
+    }
+    
+    func animateFallingCookies(columns: [[Cookie]], completion: @escaping () -> ()) {
+
+        var longestDuration: TimeInterval = 0
+        for array in columns {
+            for (idx, cookie) in array.enumerated() {
+                let newPosition = pointForColumn(column: cookie.column, row: cookie.row)
+
+                let delay = 0.05 + 0.15*TimeInterval(idx)
+
+                let sprite = cookie.sprite!
+                let duration = TimeInterval(((sprite.position.y - newPosition.y) / TileHeight) * 0.1)
+
+                longestDuration = max(longestDuration, duration + delay)
+
+                let moveAction = SKAction.move(to: newPosition, duration: duration)
+                moveAction.timingMode = .easeOut
+                sprite.run(
+                    SKAction.sequence([
+                        SKAction.wait(forDuration: delay),
+                        SKAction.group([moveAction, fallingCookieSound])]))
+            }
+        }
+
+        run(SKAction.wait(forDuration: longestDuration), completion: completion)
+    }
+    
+    func animateNewCookies(columns: [[Cookie]], completion: @escaping () -> ()) {
+
+        var longestDuration: TimeInterval = 0
+        
+        for array in columns {
+
+            let startRow = array[0].row + 1
+            
+            for (idx, cookie) in array.enumerated() {
+
+                let sprite = SKSpriteNode(imageNamed: cookie.cookieType.spriteName)
+                sprite.size = CGSize(width: TileWidth, height: TileHeight)
+                sprite.position = pointForColumn(column: cookie.column, row: startRow)
+                cookiesLayer.addChild(sprite)
+                cookie.sprite = sprite
+
+                let delay = 0.1 + 0.2 * TimeInterval(array.count - idx - 1)
+
+                let duration = TimeInterval(startRow - cookie.row) * 0.1
+                longestDuration = max(longestDuration, duration + delay)
+
+                let newPosition = pointForColumn(column: cookie.column, row: cookie.row)
+                let moveAction = SKAction.move(to: newPosition, duration: duration)
+                moveAction.timingMode = .easeOut
+                sprite.alpha = 0
+                sprite.run(
+                    SKAction.sequence([
+                        SKAction.wait(forDuration: delay),
+                        SKAction.group([
+                            SKAction.fadeIn(withDuration: 0.05),
+                            moveAction,
+                            addCookieSound])
+                        ]))
+            }
+        }
+
+        run(SKAction.wait(forDuration: longestDuration), completion: completion)
+    }
+    
+    func animateScoreForChain(chain: Chain) {
+        // Figure out what the midpoint of the chain is.
+        let firstSprite = chain.firstCookie().sprite!
+        let lastSprite = chain.lastCookie().sprite!
+        let centerPosition = CGPoint(
+            x: (firstSprite.position.x + lastSprite.position.x)/2,
+            y: (firstSprite.position.y + lastSprite.position.y)/2 - 8)
+        
+        // Add a label for the score that slowly floats up.
+        let scoreLabel = SKLabelNode(fontNamed: "GillSans-BoldItalic")
+        scoreLabel.fontSize = 16
+        scoreLabel.text = String(format: "%ld", chain.score)
+        scoreLabel.position = centerPosition
+        scoreLabel.zPosition = 300
+        cookiesLayer.addChild(scoreLabel)
+        
+        let moveAction = SKAction.move(by: CGVector(dx: 0, dy: 3), duration: 0.7)
+        moveAction.timingMode = .easeOut
+        scoreLabel.run(SKAction.sequence([moveAction, SKAction.removeFromParent()]))
+    }
+    
+    
+    func animateGameOver(completion: @escaping () -> ()) {
+        let action = SKAction.move(by: CGVector(dx: 0, dy: -size.height), duration: 0.3)
+        action.timingMode = .easeIn
+        gameLayer.run(action, completion: completion)
+    }
+    
+    func animateBeginGame(completion: @escaping () -> ()) {
+        gameLayer.isHidden = false
+        gameLayer.position = CGPoint(x: 0, y: size.height)
+        let action = SKAction.move(by: CGVector(dx: 0, dy: -size.height), duration: 0.3)
+        action.timingMode = .easeOut
+        gameLayer.run(action, completion: completion)
+    }
+    
+    func removeAllCookieSprites() {
+        cookiesLayer.removeAllChildren()
+    }
+    
+    
+    // MARK: Helpers
+
+    
+    func trySwapHorizontal(horzDelta: Int, vertical vertDelta: Int) {
+
+        let toColumn = swipeFromColumn! + horzDelta
+        let toRow = swipeFromRow! + vertDelta
+
+        guard toColumn >= 0 && toColumn < NumColumns else {
+            print("outside")
+            return }
+        
+        guard toRow >= 0 && toRow < NumRows else {
+            print("outside")
+            return }
+
+        if let toCookie = level.cookieAtColumn(column:  toColumn, row: toRow),
+            let fromCookie = level.cookieAtColumn(column: swipeFromColumn!, row: swipeFromRow!) {
+
+            if let handler = swipeHandler {
+                let swap = Swap(cookieA: fromCookie, cookieB: toCookie)
+                handler(swap)
+            }
+        }
+    }
+    
+    func addSpritesForCookies(cookies: Set<Cookie>) {
+        for cookie in cookies {
+            let sprite = SKSpriteNode(imageNamed: cookie.cookieType.spriteName)
+            sprite.size = CGSize(width: TileWidth, height: TileHeight)
+            sprite.position = pointForColumn(column: cookie.column, row:cookie.row)
+            cookiesLayer.addChild(sprite)
+            cookie.sprite = sprite
+            sprite.alpha = 0
+            sprite.xScale = 0.5
+            sprite.yScale = 0.5
+            
+            sprite.run(
+                SKAction.sequence([
+                    SKAction.wait(forDuration: 0.25, withRange: 0.5),
+                    SKAction.group([
+                        SKAction.fadeIn(withDuration: 0.25),
+                        SKAction.scale(to: 1.0, duration: 0.25)
+                        ])
+                    ]))
+        }
+        
+        
+    }
+    
+    func pointForColumn(column: Int, row: Int) -> CGPoint {
+        return CGPoint(
+            x: CGFloat(column)*TileWidth + TileWidth/2,
+            y: CGFloat(row)*TileHeight + TileHeight/2)
+    }
+    
+    func convertPoint(point: CGPoint) -> (success: Bool, column: Int, row: Int) {
+        if point.x >= 0 && point.x < CGFloat(NumColumns)*TileWidth &&
+            point.y >= 0 && point.y < CGFloat(NumRows)*TileHeight {
+            return (true, Int(point.x / TileWidth), Int(point.y / TileHeight))
+        } else {
+            return (false, 0, 0)  // invalid location
+        }
+    }
+    
+    
+    
+    func addTiles() {
+        for row in 0..<NumRows {
+            for column in 0..<NumColumns {
+                if level.tileAtColumn(column: column, row: row) != nil {
+                    let tileNode = SKSpriteNode(imageNamed: "MaskTile")
+                    tileNode.size = CGSize(width: TileWidth, height: TileHeight)
+                    tileNode.position = pointForColumn(column: column, row: row)
+                    maskLayer.addChild(tileNode)
+                }
+            }
+        }
+        for row in 0...NumRows {
+            for column in 0...NumColumns {
+                let topLeft     = (column > 0) && (row < NumRows)
+                    && level.tileAtColumn(column: column - 1, row: row) != nil
+                let bottomLeft  = (column > 0) && (row > 0)
+                    && level.tileAtColumn(column: column - 1, row: row - 1) != nil
+                let topRight    = (column < NumColumns) && (row < NumRows)
+                    && level.tileAtColumn(column: column, row: row) != nil
+                let bottomRight = (column < NumColumns) && (row > 0)
+                    && level.tileAtColumn(column: column, row: row - 1) != nil
+                
+                // The tiles are named from 0 to 15, according to the bitmask that is
+                // made by combining these four values.
+                var value = topLeft.hashValue
+                value = value | topRight.hashValue << 1
+                value = value | bottomLeft.hashValue << 2
+                value = value | bottomRight.hashValue << 3
+                
+                // Values 0 (no tiles), 6 and 9 (two opposite tiles) are not drawn.
+                if value != 0 && value != 6 && value != 9 {
+                    let name = String(format: "Tile_%ld", value)
+                    let tileNode = SKSpriteNode(imageNamed: name)
+                    tileNode.size = CGSize(width: TileWidth, height: TileHeight)
+                    var point = pointForColumn(column: column, row: row)
+                    point.x -= TileWidth/2
+                    point.y -= TileHeight/2
+                    tileNode.position = point
+                    tilesLayer.addChild(tileNode)
+                }
+            }
+        }
+    }
+    
+
+    
+
+    
+
 }
